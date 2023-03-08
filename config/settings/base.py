@@ -73,7 +73,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     "langa.users",
-    # Your stuff: custom apps go here
+    "langa.cards",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

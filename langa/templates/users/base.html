@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+{%block content%}
+<nav>
+    <a href="{% url 'users:detail' request.user.username  %}">{% translate "Dashboard" %}</a>
+    <a>Learn</a>
+    <a>Cards & Decks</a>
+    <a>Account</a>
+    <a href="{% url 'account_logout' %}">{% translate "Log out" %}</a>
+</nav>
+{%block inner%}
+{%endblock inner%}
+{%endblock%}
