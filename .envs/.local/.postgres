@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=langa
+POSTGRES_USER=ovUnKCMPIvwxQOVXWTFEXPefnAunidop
+POSTGRES_PASSWORD=LGyUOU7Rj5gkfTBtrBnvv1gEIfFyqDufVuqGGOvkHMkNHklG13FlE8PDwBRWpeGP
