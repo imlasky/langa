@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Public Decks</h1>
+  {% if decks %}
+    <ul>
+      {% for deck in decks %}
+        <li>
+          <a href="{% url 'decks:deck_detail' deck.id %}">{{ deck.name }} - {{deck.owner}}</a>
+          {% if deck.private %}
+            (Private)
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No public decks available.</p>
+  {% endif %}
+{% endblock %}

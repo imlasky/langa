@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ deck.name }}</h1>
+  <p>{{ deck.description }}</p>
+  {% if deck.private %}
+    <p>This deck is private.</p>
+    {% if request.user and request.user == deck.owner %}
+      <p><a href="{% url 'deck_update' deck.id %}">Edit deck</a></p>
+    {% endif %}
+  {% else %}
+    {% if cards %}
+      <ul>
+        {% for card in cards %}
+          <li>{{ card.front_text }} - {{ card.back_text }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No cards found.</p>
+    {% endif %}
+    {% if request.user and request.user == deck.owner %}
+      <p><a href="{% url 'card_create' deck.id %}">Add a card to this deck</a></p>
+      <p><a href="{% url 'deck_update' deck.id %}">Edit deck</a></p>
+      <form method="post" action="{% url 'deck_delete' deck.id %}">
+        {% csrf_token %}
+        <button type="submit">Delete deck</button>
+      </form>
+    {% endif %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ deck.title }}</h1>
+  {% if cards %}
+    <ul>
+      {% for card in cards %}
+        <li>
+          <a href="{% url 'card_detail' deck.id card.id %}">
+            {{ card.front_text }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No cards found.</p>
+  {% endif %}
+  {% if user and user == deck.owner %}
+    <p><a href="{% url 'card_create' deck.id %}">Add a card to this deck</a></p>
+  {% endif %}
+{% endblock %}

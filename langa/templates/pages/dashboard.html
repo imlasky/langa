@@ -2,14 +2,7 @@
 {% load static i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 {%block content%}
-<nav>
-    <a href="{% url 'dashboard'  %}">{% translate "Dashboard" %}</a>
-    <a>Learn</a>
-    <a>Cards & Decks</a>
-    <a href="{% url 'users:detail' request.user.username  %}">{% translate "Account" %}</a>
-    <a href="#">{% translate "Help" %}</a>
-    <a href="{% url 'account_logout' %}">{% translate "Log out" %}</a>
-</nav>
+{% include 'navs/dashboard_nav.html' %}
 {%block inner%}
 {%endblock inner%}
 {%endblock%}

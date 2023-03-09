@@ -1,0 +1,13 @@
+{% load static i18n %}
+{% get_current_language as LANGUAGE_CODE %}
+<nav>
+    {% if request.user.is_authenticated %}
+        <a href="{% url 'dashboard' %}">{% translate "Dashboard" %}</a>
+    {% else %}
+    <a href="{% url 'account_signup' %}">{% translate "Sign up" %}</a>
+    <a href="{% url 'account_login' %}">{% translate "Log in" %}</a>
+    {% endif %}
+    {% comment %} TODO: Add discover page {% endcomment %}
+    <a href="{% url 'decks:discover' %}">{% translate "Discover" %}</a>
+
+</nav>

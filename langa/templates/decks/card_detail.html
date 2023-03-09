@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ card.front_text }}</h1>
+  <p>{{ card.back_text }}</p>
+  {% if user and user == deck.owner %}
+    <p><a href="{% url 'card_update' deck.id card.id %}">Edit card</a></p>
+    <form method="post" action="{% url 'card_delete' deck.id card.id %}">
+      {% csrf_token %}
+      <button type="submit">Delete card</button>
+    </form>
+  {% endif %}
+{% endblock %}
