@@ -3,7 +3,7 @@
 <nav>
     <a href="{% url 'dashboard'  %}">{% translate "Dashboard" %}</a>
     <a>Learn</a>
-    <a>Cards & Decks</a>
+    <a href="{% url 'decks:my_decks' %}">Cards & Decks</a>
     <a href="{% url 'users:detail' request.user.username  %}">{% translate "Account" %}</a>
     <a href="#">{% translate "Help" %}</a>
     <a href="{% url 'account_logout' %}">{% translate "Log out" %}</a>

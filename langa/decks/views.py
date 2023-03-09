@@ -8,17 +8,15 @@ from .models import Deck
 
 def discover(request):
     decks = Deck.objects.filter(private=False)
-    print(decks)
     return render(request, "decks/discover.html", {"decks": decks})
 
 
 @login_required
-def my_decks(request):
+def deck_list(request):
     decks = Deck.objects.filter(owner=request.user)
-    return render(request, "decks/my_decks.html", {"decks": decks})
+    return render(request, "decks/deck_list.html", {"decks": decks})
 
 
-@login_required
 def deck_detail(request, deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
     if deck.private and deck.owner != request.user:
@@ -29,7 +27,7 @@ def deck_detail(request, deck_id):
 
 
 @login_required
-def create_deck(request):
+def deck_create(request):
     if request.method == "POST":
         form = DeckForm(request.POST)
         if form.is_valid():
@@ -40,11 +38,11 @@ def create_deck(request):
             return redirect("decks:my_decks")
     else:
         form = DeckForm()
-    return render(request, "decks/create_deck.html", {"form": form})
+    return render(request, "decks/deck_create.html", {"form": form})
 
 
 @login_required
-def edit_deck(request, deck_id):
+def deck_update(request, deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
     if deck.owner != request.user:
         messages.error(request, "You do not have permission to edit this deck.")
@@ -61,7 +59,7 @@ def edit_deck(request, deck_id):
 
 
 @login_required
-def delete_deck(request, deck_id):
+def deck_delete(request, deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
     if deck.owner != request.user:
         messages.error(request, "You do not have permission to delete this deck.")
@@ -74,7 +72,7 @@ def delete_deck(request, deck_id):
 
 
 @login_required
-def create_card(request, deck_id):
+def card_create(request, deck_id):
     deck = get_object_or_404(Deck, id=deck_id)
     if deck.owner != request.user:
         messages.error(
@@ -92,4 +90,4 @@ def create_card(request, deck_id):
             return redirect("decks:deck_detail", deck_id=deck.id)
     else:
         form = CardForm()
-    return render(request, "decks/create_card.html", {"form": form, "deck": deck})
+    return render(request, "decks/card_create.html", {"form": form, "deck": deck})

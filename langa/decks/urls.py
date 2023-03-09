@@ -6,10 +6,10 @@ app_name = "decks"
 
 urlpatterns = [
     path("", views.discover, name="discover"),
-    path("my_decks/", views.my_decks, name="my_decks"),
+    path("my_decks/", views.deck_list, name="my_decks"),
     path("<uuid:deck_id>/", views.deck_detail, name="deck_detail"),
-    path("create/", views.create_deck, name="create_deck"),
-    path("edit/<uuid:deck_id>/", views.edit_deck, name="edit_deck"),
-    path("delete/<uuid:deck_id>/", views.delete_deck, name="delete_deck"),
-    path("create/<uuid:deck_id>/", views.create_card, name="create_card"),
+    path("create/", views.deck_create, name="deck_create"),
+    path("update/<uuid:deck_id>/", views.deck_update, name="deck_update"),
+    path("delete/<uuid:deck_id>/", views.deck_delete, name="deck_delete"),
+    path("create/<uuid:deck_id>/", views.card_create, name="card_create"),
 ]

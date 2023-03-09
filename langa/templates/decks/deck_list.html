@@ -1,13 +1,13 @@
-{% extends 'base.html' %}
+{% extends 'decks/base.html' %}
 
-{% block content %}
-  <h1>Decks</h1>
+{% block inner %}
+  <h3>Decks</h3>
   {% if decks %}
     <ul>
       {% for deck in decks %}
         <li>
-          <a href="{% url 'deck_detail' deck.id %}">
-            {{ deck.title }} - {{ deck.description }}
+          <a href="{% url 'decks:deck_detail' deck.id %}">
+            {{ deck.name }} - {{ deck.description }}
           </a>
           {% if deck.private %}
             (private)
@@ -19,6 +19,6 @@
     <p>No decks found.</p>
   {% endif %}
   <p>
-    <a href="{% url 'deck_create' %}">Create a new deck</a>
+    <a href="{% url 'decks:deck_create' %}">Create a new deck</a>
   </p>
 {% endblock %}

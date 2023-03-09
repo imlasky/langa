@@ -16,7 +16,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-      --background-color: #01242e;
+      --background-color: #151515;
       --heading-color: #eee;
       --text-color: #ddd;
       --link-color: #8cc2dd;
@@ -26,6 +26,7 @@
       --blockquote-color: #ccc;
   }
 }
+
 
 
 body {
@@ -46,6 +47,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-main);
   color: var(--heading-color);
 }
+
 
 a {
   color: var(--link-color);

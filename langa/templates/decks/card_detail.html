@@ -1,6 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'decks/base.html' %}
 
-{% block content %}
+{% block inner %}
   <h1>{{ card.front_text }}</h1>
   <p>{{ card.back_text }}</p>
   {% if user and user == deck.owner %}
