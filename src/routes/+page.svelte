@@ -1,3 +1,7 @@
+<script>
+
+</script>
+
 <main class="flex flex-col items-center w-full">
     <section id="hero" class="flex flex-col w-4/5 md:w-7/12 justify-center items-center pt-12 gap-y-2">
         

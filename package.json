@@ -22,6 +22,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"daisyui": "^2.51.4"
+		"daisyui": "^2.51.4",
+		"pocketbase": "^0.12.1"
 	}
 }
