@@ -119,7 +119,7 @@
                         </svg>
                     </div>
                 {:else}
-                      Let's go!
+                      Begin session
                 {/if}
             </button>
         </form>
