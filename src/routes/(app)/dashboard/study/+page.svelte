@@ -1,4 +1,7 @@
 <script>
+    import Button from '$lib/components/interface/Button.svelte';
+
+
 
     export let data;
 
@@ -49,6 +52,6 @@
 {:else}
     <div class="flex flex-grow flex-col w-full justify-center items-center">
         <h1 class="text-2xl"> No decks yet!</h1>
-        <a class="btn btn-md mt-2" href="create">Make one now</a>
+        <a class="mt-4" href="create"><Button buttonSize="md">Make one now</Button></a>
     </div>
 {/if}

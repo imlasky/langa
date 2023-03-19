@@ -30,11 +30,11 @@
           </div>
           <div class="navbar-end hidden sm:flex">
             {#if data.user}
-              <a href="/dashboard"><Button buttonText={'Dashboard'}/></a>
+              <a href="/dashboard"><Button>Dashboard</Button></a>
               
 
             {:else}
-              <a href="/auth/login"><Button buttonText={'Get started'}/></a>
+              <a href="/auth/login"><Button>Get started</Button></a>
 
             {/if}
           </div>
