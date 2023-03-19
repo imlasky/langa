@@ -3,7 +3,7 @@
 
     export let buttonText = 'Button Text';
     export let buttonSize = 'md';
-    let className = "rounded-full font-bold uppercase border-4 border-neutral-800 hover:shadow-[-7px_-7px_0px_0px] hover:shadow-primary hover:border-primary transition-shadow hover:text-primary";
+    let className = "rounded-full font-bold uppercase border-4 border-neutral-800 hover:shadow-[-3px_3px_0px_0px] hover:shadow-primary hover:border-primary transition-all hover:text-primary hover:translate-x-1 hover:-translate-y-1";
     
     switch (buttonSize) {
         case 'sm':
@@ -25,6 +25,6 @@
     
 </script>
 
-<button class={className} >
+<button class={className}>
     {buttonText}
 </button>
