@@ -1,4 +1,6 @@
 <script>
+    import Button from "$lib/components/interface/Button.svelte";
+
     export let data;
 
 </script>
@@ -17,7 +19,7 @@
                 <li><a href="https://github.com/imlasky/langa"><img src="/image/github-mark.svg" height="20" width="20"></a></li>
               </ul>
             </div>
-            <a class="btn btn-ghost normal-case text-3xl" href="/">Langa</a>
+            <a class="normal-case text-3xl font-bold text-center" href="/">Langa</a>
           </div>
           <div class="navbar-center hidden lg:flex">
             <ul class="menu menu-horizontal px-1">
@@ -28,10 +30,11 @@
           </div>
           <div class="navbar-end hidden sm:flex">
             {#if data.user}
-              <a class="btn" href="/dashboard">Dashboard</a>
+              <a href="/dashboard"><Button buttonText={'Dashboard'}/></a>
+              
 
             {:else}
-              <a class="btn" href="/auth/login">Get started</a>
+              <a href="/auth/login"><Button buttonText={'Get started'}/></a>
 
             {/if}
           </div>

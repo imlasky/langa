@@ -1,9 +1,17 @@
 <script>
     import FlashCard from "$lib/components/cards/FlashCard.svelte";
+    import PreSurvey from "$lib/PreSurvey.svelte";
+
+    export let data;
+    export let form;
+
 
     let showAnswer = false;
     let cardDifficultyRating = 0;
     let gaveDifficulty = false;
+    let submitted = false;
+
+    $: takeSurvey = data.takeSurvey ? !submitted : data.takeSurvey;
 
     function handleKeyUp(e) {
         if (e.keyCode === 32) {
@@ -14,16 +22,21 @@
             gaveDifficulty = true;
         }
     }
-
    
 </script>
 
 <svelte:window on:keyup={handleKeyUp}/>
-<div class="flex flex-grow w-full justify-center items-center">
 
-    <FlashCard 
-        bind:showAnswer 
-        bind:cardDifficultyRating
-        bind:gaveDifficulty
-    />
-</div>
+{#if takeSurvey}
+    <PreSurvey bind:submitted {form}/>
+{:else}
+
+    <div class="flex flex-grow w-full justify-center items-center">
+
+        <FlashCard 
+            bind:showAnswer 
+            bind:cardDifficultyRating
+            bind:gaveDifficulty
+        />
+    </div>
+{/if}

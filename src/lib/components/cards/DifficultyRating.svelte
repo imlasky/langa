@@ -22,6 +22,6 @@
 
 <div class="btn-group">
     {#each difficultyLevels as {difficultyString, difficultyRating}, i(difficultyRating)}
-        <button class="btn btn-outline btn-sm" on:click={() => {handleClick(difficultyRating)}}>{difficultyString} ({i+1})</button>
+        <button class="btn btn-outline btn-xs sm:btn-sm" on:click={() => {handleClick(difficultyRating)}}>{difficultyString} ({i+1})</button>
     {/each}
 </div> 
