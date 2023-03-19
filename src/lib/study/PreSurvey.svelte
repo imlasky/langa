@@ -2,7 +2,7 @@
 
     import { enhance } from "$app/forms";
     import ListErrors from '$lib/ListErrors.svelte';
-    import Button from "./components/interface/Button.svelte";
+    import Button from "$lib/components/interface/Button.svelte";
 
     /** @type {import('./$types').ActionData} */
 	export let form;
@@ -119,7 +119,7 @@
                         </svg>
                     </div>
                 {:else}
-                      Begin session
+                      Begin lesson
                 {/if}
             </button>
         </form>

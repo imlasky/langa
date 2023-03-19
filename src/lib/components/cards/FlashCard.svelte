@@ -63,7 +63,7 @@
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
-<div class="flex flex-col w-5/6 md:w-1/2 h-72 bg-white place-content-around shadow-lg rounded-md p-2">
+<div class="flex flex-col w-5/6 md:w-1/2 h-72 bg-white place-content-around shadow-lg rounded-xl p-2">
     {#if !showAnswer}
         <div class="flex justify-center">
             {@html cardFront}

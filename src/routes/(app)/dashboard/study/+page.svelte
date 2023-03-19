@@ -1,42 +1,54 @@
 <script>
-    import FlashCard from "$lib/components/cards/FlashCard.svelte";
-    import PreSurvey from "$lib/PreSurvey.svelte";
 
     export let data;
-    export let form;
 
+    let decks = data.decks;
 
-    let showAnswer = false;
-    let cardDifficultyRating = 0;
-    let gaveDifficulty = false;
-    let submitted = false;
+    console.log(decks)
 
-    $: takeSurvey = data.takeSurvey ? !submitted : data.takeSurvey;
-
-    function handleKeyUp(e) {
-        if (e.keyCode === 32) {
-            showAnswer = true;
-        } 
-        if ([1,2,3,4].includes(parseInt(e.key))) {
-            cardDifficultyRating = e.key - 1;
-            gaveDifficulty = true;
-        }
-    }
-   
 </script>
 
-<svelte:window on:keyup={handleKeyUp}/>
+{#if decks.length > 0}
+    <div class="overflow-x-auto">
+        <table class="table w-full">
+        <!-- head -->
+        <thead>
+            <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Job</th>
+            <th>Favorite Color</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- row 1 -->
+            <tr>
+            <th>1</th>
+            <td>Cy Ganderton</td>
+            <td>Quality Control Specialist</td>
+            <td>Blue</td>
+            </tr>
+            <!-- row 2 -->
+            <tr class="hover hover:cursor-pointer">
+            <th>2</th>
+            <td>Hart Hagerty</td>
+            <td>Desktop Support Technician</td>
+            <td>Purple</td>
+            </tr>
+            <!-- row 3 -->
+            <tr>
+            <th>3</th>
+            <td>Brice Swyre</td>
+            <td>Tax Accountant</td>
+            <td>Red</td>
+            </tr>
+        </tbody>
+        </table>
+    </div>
 
-{#if takeSurvey}
-    <PreSurvey bind:submitted {form}/>
 {:else}
-
-    <div class="flex flex-grow w-full justify-center items-center">
-
-        <FlashCard 
-            bind:showAnswer 
-            bind:cardDifficultyRating
-            bind:gaveDifficulty
-        />
+    <div class="flex flex-grow flex-col w-full justify-center items-center">
+        <h1 class="text-2xl"> No decks yet!</h1>
+        <a class="btn btn-md mt-2" href="create">Make one now</a>
     </div>
 {/if}

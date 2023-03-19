@@ -11,13 +11,13 @@
             A learning platform that cares about how you feel
         </h1>
         <h2 class="text-md md:text-2xl text-center w-5/6 text-neutral-800">
-            How we feel affects how we learn. Langa takes into account things like hunger, thirst, sleep, and mood to determine the best lesson for you that session.
+            How we feel affects how we learn. Langa takes into account things like hunger, thirst, sleep, and activity to determine the best lesson for you.
         </h2>
         <div class="pt-8">
 
             <a href='/dashboard'>
                 <Button 
-                    buttonText='See how it works'
+                    buttonText="Let's get going"
                     buttonSize='xl'
                 />
             </a>

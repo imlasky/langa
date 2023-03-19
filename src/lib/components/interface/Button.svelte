@@ -3,7 +3,7 @@
 
     export let buttonText = 'Button Text';
     export let buttonSize = 'md';
-    let className = "rounded-full font-bold uppercase border-4 border-neutral-800 hover:shadow-[-6px_-6px_0px_0px_rgb(38,38,38)] transition-shadow";
+    let className = "rounded-full font-bold uppercase border-4 border-neutral-800 hover:shadow-[-7px_-7px_0px_0px] hover:shadow-primary hover:border-primary transition-shadow hover:text-primary";
     
     switch (buttonSize) {
         case 'sm':
