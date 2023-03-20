@@ -45,7 +45,7 @@
         
   </header>
   <slot />
-  <footer class="flex flex-col">
-   
+  <footer class="flex flex-col h-48">
+   t
   </footer>
 </div>

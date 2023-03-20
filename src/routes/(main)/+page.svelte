@@ -8,8 +8,8 @@
 
 </script>
 
-<main class="flex flex-col items-center w-full">
-    <section id="hero" class="flex flex-col w-4/5 md:w-7/12 justify-center items-center gap-y-2">
+<main class="flex flex-col items-center w-full mt-24">
+    <section id="hero" class="flex flex-col w-4/5 md:w-7/12 justify-center items-center gap-y-2 mb-24">
         
         <h1 class="text-3xl md:text-7xl font-bold text-center">
             A learning platform that cares about how you feel
@@ -28,8 +28,8 @@
 
     </section>
 
-    <!-- <section class="flex flex-col w-full items-center mt-32">
-        <div class="flex md:flex-row w-4/5 md:w-3/4 items-center h-screen align-middle justify-center gap-x-2">
+    <section class="flex flex-col w-full items-center bg-primary py-24">
+        <div class="flex md:flex-row w-4/5 md:w-3/4 items-center align-middle justify-center gap-x-2">
             <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0">A quick questionnaire about your day is all you need to personalize your lesson</h2>
             <div class="mockup-window border bg-base-300 shadow-xl">
                 <img src="image/survey.png" width=800>
@@ -38,7 +38,7 @@
 
     </section>
 
-    <section class="flex flex-col w-full items-center h-screen align-middle justify-center">
+    <section class="flex flex-col w-full items-center align-middle justify-center bg-secondary py-24">
         <h2 class="text-3xl md:text-5xl font-bold pb-12">Customize your cards for what you need</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 w-4/5 md:w-3/4 gap-x-4">
             <div class="mockup-code shadow-xl">
@@ -59,7 +59,32 @@
               </div>
         </div>
         
-    </section> -->
+    </section>
+
+    <section class="flex flex-col w-full items-center bg-info py-24">
+        <div class="flex md:flex-row w-4/5 md:w-3/4 items-center align-middle justify-center gap-x-8">
+            <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0 w-1/2">Minimize repetitions by keeping track of how you learn</h2>
+            <div class="flex w-1/2 justify-center">
+                <ul class="list-disc">
+                    <li class="text-2xl">Lifestyle inputs</li>
+                    <li class="text-2xl">Card content</li>
+                    <li class="text-2xl">Time studying each card</li>
+                    <li class="text-2xl">Time answering each card</li>
+                    <li class="text-2xl">Card difficulty rating</li>
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="flex flex-col w-full items-center align-middle justify-center py-24">
+        <h2 class="text-3xl md:text-5xl font-bold pb-12">Import your decks from other tools</h2>
+        <div class="flex">
+
+
+        </div>
+        
+    </section>
 
 
 </main>

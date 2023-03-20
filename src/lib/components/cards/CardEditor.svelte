@@ -7,10 +7,10 @@
     import { enhance } from '$app/forms';
     import { fade } from 'svelte/transition';
 
-    export let frontContent;
-    export let backContent;
     export let form;
-
+    
+    let frontContent;
+    let backContent;
     let frontElement;
     let frontEditor;
     let backElement;

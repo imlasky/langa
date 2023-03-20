@@ -5,9 +5,6 @@
     export let data;
 
     let deck = data.deck;
-    let frontContent;
-    let backContent;
-
 
 </script>
 
@@ -15,5 +12,5 @@
 
 <div class="flex w-full mx-4">
 
-    <CardEditor bind:frontContent bind:backContent/>
+    <CardEditor/>
 </div>
