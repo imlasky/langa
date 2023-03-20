@@ -20,7 +20,7 @@
         <ul class="menu p-4 w-60 bg-base-100 text-base-content">
         <!-- Sidebar content here -->
             <a class="normal-case text-xl font-bold text-start pl-4 pb-4" href="/">Langa</a>
-            <li><a href="/dashboard">Overview</a></li>
+            <!-- <li><a href="/dashboard">Overview</a></li> -->
             <li><a href="/dashboard/study">Study</a></li>
             <li><a href="/dashboard/decks/create">Manage decks</a></li>
             
