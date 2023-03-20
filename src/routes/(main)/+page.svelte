@@ -77,14 +77,14 @@
 
     </section>
 
-    <section class="flex flex-col w-full items-center align-middle justify-center py-24">
+    <!-- <section class="flex flex-col w-full items-center align-middle justify-center py-24">
         <h2 class="text-3xl md:text-5xl font-bold pb-12">Import your decks from other tools</h2>
         <div class="flex">
 
 
         </div>
         
-    </section>
+    </section> -->
 
 
 </main>
