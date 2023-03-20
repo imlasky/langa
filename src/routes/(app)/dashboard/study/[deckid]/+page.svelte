@@ -6,6 +6,8 @@
     export let data;
     export let form;
 
+    let cards = data.cards;
+    let currentCard = cards[0];
 
     let showAnswer = false;
     let cardDifficultyRating = 0;
@@ -32,11 +34,19 @@
     <PreSurvey bind:submitted {form}/>
 {:else}
 
-    <div class="flex flex-grow w-full justify-center items-center">
-        <FlashCard 
-            bind:showAnswer 
-            bind:cardDifficultyRating
-            bind:gaveDifficulty
-        />
-    </div>
+    {#if cards.length > 0}
+        <div class="flex flex-grow w-full justify-center items-center">
+            <FlashCard 
+                bind:showAnswer 
+                bind:cardDifficultyRating
+                bind:gaveDifficulty
+                front={currentCard.front}
+                back={currentCard.back}
+                
+            />
+        </div>
+    {:else}
+        <h2>This deck is empty</h2>
+    {/if}
+    
 {/if}

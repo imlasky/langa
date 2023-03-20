@@ -4,13 +4,16 @@ import { pb } from '$lib/pocketbase';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
 
-    let record;
+    let deckRecord;
+    let cardRecords;
     try {
-        record = await pb.collection('decks').getOne(params['deckid']);
+        deckRecord = await pb.collection('decks').getOne(params['deckid']);
+        cardRecords = await pb.collection('cards').getFullList({
+            filter: `deck.id="${params['deckid']}"`,
+        });
     } catch (error) {
         throw redirect (307, '/dashboard/study')
     }
-    // fetch a paginated records list
     const resultList = await pb.collection('surveys').getList(1, 1, {
         sort: '-created',
     });
@@ -18,7 +21,11 @@ export async function load({ locals, params }) {
     // Check the latest survey and see if null 
     const latestSurvey = resultList.totalItems > 0 ? resultList.items[0].export() : null;
     if (!latestSurvey) {
-        return {takeSurvey: true, deck: record.export()}
+        return {
+            takeSurvey: true, 
+            deck: deckRecord.export(),
+            cards: cardRecords.map((card) => {return card.export()})
+        }
     }
 
     // Find how many hours since the last survey. If it has been more than 4 hours, redo the survey
@@ -26,9 +33,17 @@ export async function load({ locals, params }) {
     const timeSinceSurvey = Math.floor((new Date() - lastSurveyTime)/(1000 * 60 * 60));
 
     if (timeSinceSurvey > 3) {
-        return {takeSurvey: true, deck: record.export()}
+        return {
+            takeSurvey: true, 
+            deck: deckRecord.export(),
+            cards: cardRecords.map((card) => {return card.export()})
+        }
     } else {
-        return {takeSurvey:false, deck: record.export()}
+        return {
+            takeSurvey:false, 
+            deck: deckRecord.export(),
+            cards: cardRecords.map((card) => {return card.export()})
+        }
     }
 
 }
@@ -54,5 +69,10 @@ export const actions = {
         
         return {ok:true}
 
+    },
+    answer: async ({request}) => {
+        const data = await request.formData();
+        console.log(data);
     }
+
   };

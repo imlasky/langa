@@ -4,9 +4,17 @@ import { pb } from '$lib/pocketbase';
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
 
+    let cardRecords;
     try {
         const record = await pb.collection('decks').getOne(params['deckid']);
-        return {deck: record.export()}
+        cardRecords = await pb.collection('cards').getFullList({
+            sort: '-created',
+            filter: `deck.id="${params['deckid']}"`,
+        });
+        return {
+            deck: record.export(),
+            cards: cardRecords.map((card) => {return card.export()})
+        }
     } catch (error) {
         throw redirect (307, '/dashboard/decks/manage')
     }
@@ -29,7 +37,7 @@ export const actions = {
 
         const record = await pb.collection('cards').create(cardData);
 
-        return {ok: true}
+        throw redirect (307, `/dashboard/decks/create/${params['deckid']}`)
 
     }
   };

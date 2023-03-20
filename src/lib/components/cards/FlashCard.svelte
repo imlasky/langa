@@ -10,8 +10,8 @@
     let reviewTime = 0;
     let answerTime = 0;
     let cardData = {}
-    let cardFront = "<p>This is the <strong>front</strong> of the card</p>"
-    let cardBack = "<p>This is the <strong>back</strong> of the card</p>"
+    export let front = "<p>This is the <strong>front</strong> of the card</p>"
+    export let back = "<p>This is the <strong>back</strong> of the card</p>"
 
 
     function calculateNextReview() {
@@ -66,15 +66,14 @@
 <div class="flex flex-col w-5/6 md:w-1/2 h-72 bg-white place-content-around shadow-lg rounded-xl p-2">
     {#if !showAnswer}
         <div class="flex justify-center">
-            {@html cardFront}
+            {@html front}
         </div>
         <button on:click={() => {showAnswer = true}}>Show answer</button>
     {:else}
         <div class="flex justify-center">
-            {@html cardBack}
+            {@html back}
         </div>
         <div class="flex justify-center">
-
             <DifficultyRating bind:gaveDifficulty bind:cardDifficultyRating/> 
         </div>
 
