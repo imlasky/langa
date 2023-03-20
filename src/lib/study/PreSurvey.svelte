@@ -65,9 +65,9 @@
         <h1 class="text-2xl">How's it going today?</h1>
         <ListErrors errors={form?.errors} />
         <form method="POST" use:enhance class="flex flex-col items-center w-5/6 md:w-1/2 gap-y-4 mt-8">
-            <div class="form-control w-full max-w-md">
+            <div class="form-control w-full max-w-lg">
                 <label class="label">
-                  <span class="label-text">How many hours of sleep did you get?</span>
+                  <span class="text-lg">How many hours of sleep did you get?</span>
                 </label>
                 <input name="sleep" type="range" min=1 max=5 class="range" bind:value={sleep}/>
                 <div class="w-full flex justify-between text-xs px-2 pt-2">
@@ -76,9 +76,9 @@
                     {/each}
                 </div>
             </div>
-            <div class="form-control w-full max-w-md">
+            <div class="form-control w-full max-w-lg">
                 <label class="label">
-                  <span class="label-text">How many minutes of physical activity have you done today?</span>
+                  <span class="text-lg">How many minutes of physical activity have you done today?</span>
                 </label>
                 <input name="physicalActivity" type="range" min=1 max=5 class="range" bind:value={physicalActivity}/>
                 <div class="w-full flex justify-between text-xs px-2 pt-2">
@@ -87,9 +87,9 @@
                     {/each}
                 </div>
             </div>
-            <div class="form-control w-full max-w-md">
+            <div class="form-control w-full max-w-lg">
                 <label class="label">
-                  <span class="label-text">How many glasses of water did you drink today?</span>
+                  <span class="text-lg">How many glasses of water did you drink today?</span>
                 </label>
                 <input name="water" type="range" min=1 max=5 class="range" bind:value={water}/>
                 <div class="w-full flex justify-between text-xs px-2 pt-2">
@@ -98,9 +98,9 @@
                     {/each}
                 </div>
             </div>
-            <div class="form-control w-full max-w-md">
+            <div class="form-control w-full max-w-lg">
                 <label class="label">
-                  <span class="label-text">How many hours ago was your last meal?</span>
+                  <span class="text-lg">How many hours ago was your last meal?</span>
                 </label>
                 <input name="food" type="range" min=1 max=5 class="range" bind:value={food}/>
                 <div class="w-full flex justify-between text-xs px-2 pt-2">
@@ -109,7 +109,7 @@
                     {/each}
                 </div>
             </div>
-            <button class="btn" on:click={handleClick}>
+            <Button on:click={handleClick}>
                 {#if submitButtonPressed}
                     <div class="flex items-center space-x-4">
                         <p>Generating lesson</p>
@@ -119,9 +119,9 @@
                         </svg>
                     </div>
                 {:else}
-                      Begin lesson
+                    Begin lesson
                 {/if}
-            </button>
+            </Button>
         </form>
     </div>
 </div>
