@@ -5,8 +5,6 @@
     export let form;
     let deckName;
 
-    $: console.log(form)
-
 </script>
 
 <div class="flex w-full h-full justify-center">

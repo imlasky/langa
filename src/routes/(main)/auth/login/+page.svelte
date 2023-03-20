@@ -7,7 +7,6 @@
 
     let submitted = false;
     function handleClick() {
-        console.log('clicked')
         submitted = true;
     }
     

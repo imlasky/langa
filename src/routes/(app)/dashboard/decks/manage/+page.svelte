@@ -5,17 +5,16 @@
 
 
     let decks = data.decks;
-    console.log(decks)
     let selectedDecks = [];
 
-    $: selectedDecks = selectAll ? decks : [];
+    
 
 </script>
 
 
    
-<div class="flex overflow-x-scroll w-full">
-  <table class="table w-full">
+<div class="flex overflow-x-scroll w-full max-h-screen justify-center">
+  <table class="table w-3/4 mb-20">
     <!-- head -->
     <thead>
       <tr>
@@ -53,7 +52,6 @@
     <tfoot>
       <tr>
         <th>Name</th>
-        <th># Cards</th>
         <th>Last Reviewed</th>
         <th></th>
       </tr>

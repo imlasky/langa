@@ -7,8 +7,6 @@
 
     let decks = data.decks;
 
-    console.log(decks)
-
 </script>
 
 {#if decks.length > 0}
