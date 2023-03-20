@@ -12,3 +12,24 @@ export async function load({ locals, params }) {
     }
   
 }
+
+/** @type {import('./$types').Actions} */
+export const actions = {
+    default: async ({cookies, request, url, params}) => {
+        const data = await request.formData()
+        const front = data.get('front');
+        const back = data.get('back')
+        
+        const cardData = {
+            "front": front,
+            "back": back,
+            "deck": params['deckid'],
+            "owner": pb.authStore.model.id,
+        };
+
+        const record = await pb.collection('cards').create(cardData);
+
+        return {ok: true}
+
+    }
+  };
