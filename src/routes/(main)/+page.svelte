@@ -17,7 +17,7 @@
 
             <a href='/dashboard'>
                 <Button buttonSize='xl'>
-                    Check it out
+                    Start learning
                 </Button>
             </a>
         </div>

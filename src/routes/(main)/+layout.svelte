@@ -34,7 +34,7 @@
               
 
             {:else}
-              <a href="/auth/login"><Button>Get started</Button></a>
+              <a href="/auth/register"><Button>Get started</Button></a>
 
             {/if}
           </div>
