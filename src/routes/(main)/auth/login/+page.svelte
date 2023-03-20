@@ -19,7 +19,7 @@
 <div class="flex w-full justify-center mt-24">
     <div class="flex flex-col w-full items-center">
 
-        <h1 class="text-2xl">Log in to your account</h1>
+        <h1 class="text-2xl font-bold">Log in to your account</h1>
         <ListErrors errors={form?.errors} />
         <form method="POST" use:enhance class="flex flex-col items-center w-1/2 gap-y-2">
             <div class="form-control w-full max-w-sm">

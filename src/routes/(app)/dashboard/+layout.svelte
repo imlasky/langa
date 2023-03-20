@@ -22,7 +22,7 @@
             <a class="normal-case text-xl font-bold text-start pl-4 pb-4" href="/">Langa</a>
             <li><a href="/dashboard">Overview</a></li>
             <li><a href="/dashboard/study">Study</a></li>
-            <li><a href="/dashboard/create">Create/Upload</a></li>
+            <li><a href="/dashboard/manage">Manage decks</a></li>
             
             <div class="divider w-5/6 place-self-center"></div>
 
