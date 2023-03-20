@@ -9,7 +9,7 @@
 </script>
 
 <main class="flex flex-col items-center w-full">
-    <section id="hero" class="flex flex-col w-4/5 md:w-7/12 justify-center items-center pt-32 gap-y-2">
+    <section id="hero" class="flex flex-col w-4/5 md:w-7/12 justify-center items-center gap-y-2">
         
         <h1 class="text-3xl md:text-7xl font-bold text-center">
             A learning platform that cares about how you feel
@@ -28,7 +28,7 @@
 
     </section>
 
-    <section class="flex flex-col w-full bg-primary items-center mt-32">
+    <!-- <section class="flex flex-col w-full items-center mt-32">
         <div class="flex md:flex-row w-4/5 md:w-3/4 items-center h-screen align-middle justify-center gap-x-2">
             <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0">A quick questionnaire about your day is all you need to personalize your lesson</h2>
             <div class="mockup-window border bg-base-300 shadow-xl">
@@ -38,7 +38,7 @@
 
     </section>
 
-    <section class="flex flex-col w-full items-center h-screen align-middle justify-center bg-secondary">
+    <section class="flex flex-col w-full items-center h-screen align-middle justify-center">
         <h2 class="text-3xl md:text-5xl font-bold pb-12">Customize your cards for what you need</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 w-4/5 md:w-3/4 gap-x-4">
             <div class="mockup-code shadow-xl">
@@ -59,7 +59,7 @@
               </div>
         </div>
         
-    </section>
+    </section> -->
 
 
 </main>

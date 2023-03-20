@@ -46,11 +46,6 @@
   </header>
   <slot />
   <footer class="flex flex-col">
-   <div>
-    sdjfksdf
-    </div>
-    <div>
-      sdjfksdf
-      </div>
+   
   </footer>
 </div>
