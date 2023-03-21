@@ -9,6 +9,8 @@
 
     let deck = data.deck;
     let cards = data.cards;
+    $: survey = data.survey ? data.survey : form?.survey;
+
     let currentCard = cards[0];
 
     let showAnswer = false;
@@ -42,10 +44,11 @@
                 bind:showAnswer 
                 bind:cardDifficultyRating
                 bind:gaveDifficulty
-                front={currentCard.front}
-                back={currentCard.back}
+                {currentCard}
+                {survey}
                 frontTemplate={deck.frontTemplate}
                 backTemplate={deck.backTemplate}
+                
                 
             />
         </div>

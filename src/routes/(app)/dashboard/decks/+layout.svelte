@@ -2,9 +2,9 @@
 
     import {page} from "$app/stores";
     let tabs = [
+      'manage',
       'create',
       'upload',
-      'manage',
     ];
     let selectedTab = 0;
     $: currentPage = $page.url.pathname.split('/')[3]

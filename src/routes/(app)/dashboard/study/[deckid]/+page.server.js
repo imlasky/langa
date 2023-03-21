@@ -40,7 +40,8 @@ export async function load({ locals, params }) {
         }
     } else {
         return {
-            takeSurvey:false, 
+            takeSurvey: false, 
+            survey: latestSurvey,
             deck: deckRecord.export(),
             cards: cardRecords.map((card) => {return card.export()})
         }
@@ -48,9 +49,12 @@ export async function load({ locals, params }) {
 
 }
 
+
+  
+
 /** @type {import('./$types').Actions} */
 export const actions = {
-    default: async ({cookies, request, url}) => {
+    survey: async ({cookies, request, url}) => {
         const data = await request.formData()
         const food = data.get('food');
         const water = data.get('water');
@@ -67,12 +71,10 @@ export const actions = {
 
         const record = await pb.collection('surveys').create(surveyData);
         
-        return {ok:true}
+        return {
+            ok:true,
+            survey:record.export(),
+        }
 
     },
-    // answer: async ({request}) => {
-    //     const data = await request.formData();
-    //     console.log(data);
-    // }
-
-  };
+};

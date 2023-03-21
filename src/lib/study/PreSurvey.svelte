@@ -64,7 +64,7 @@
 
         <h1 class="text-2xl">How's it going today?</h1>
         <ListErrors errors={form?.errors} />
-        <form method="POST" use:enhance class="flex flex-col items-center w-5/6 md:w-1/2 gap-y-4 mt-8">
+        <form method="POST" use:enhance action="?/survey" class="flex flex-col items-center w-5/6 md:w-1/2 gap-y-4 mt-8">
             <div class="form-control w-full max-w-lg">
                 <label class="label">
                   <span class="text-lg">How many hours of sleep did you get?</span>
