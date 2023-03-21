@@ -1,11 +1,11 @@
 <script>
-    let selectAll;
+
 
     export let data;
 
 
     let decks = data.decks;
-    let selectedDecks = [];
+    let deletedDeck;
 
     
 
@@ -40,7 +40,8 @@
               <label tabindex="0"  class="btn btn-ghost btn-xs">manage</label>
               <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box">
                 <li><a href="/dashboard/decks/create/{deck.id}">Edit cards</a></li>
-                <li><a href="#">Delete deck</a></li>
+                <li><label for="deleteModal" on:click={() => {deletedDeck=deck}}>Delete</label></li>
+
               </ul>
             </div>
           </th>
@@ -58,4 +59,16 @@
     </tfoot>
     
   </table>
+  
 </div>
+<input type="checkbox" id="deleteModal" class="modal-toggle" />
+<label for="deleteModal" class="modal bg-opacity-0 bg-primary cursor-pointer">
+  <label class="modal-box relative" for="">
+    <h3 class="text-lg font-bold text-center pb-4">Confirm delete</h3>
+    <form method="post" action="?/delete" class="flex justify-center">
+      <input name="deckId" value={deletedDeck?.id} hidden>
+      <button class="btn">Confirm</button>
+    </form>
+  </label>
+</label>
+
