@@ -3,7 +3,9 @@
     import CardAdder from "$lib/dashboard/create/CardAdder.svelte";
 
 
+
     export let data;
+    export let form;
 
     let deck = data.deck;
     let cards = data.cards;
@@ -20,8 +22,8 @@
 <div class="flex flex-col w-full px-4 md:space-x-4">
 
   <div>
-    <button class="btn btn-ghost" on:click={() => {side=0}}>Add cards</button>
-    <button class="btn btn-ghost" on:click={() => {side=1}}>Adjust card format</button>
+    <button class="btn btn-ghost animate-none" on:click={() => {side=0}}>Add cards</button>
+    <button class="btn btn-ghost animate-none" on:click={() => {side=1}}>Adjust card format</button>
 
   </div>
     <div class="flex flex-row w-full h-full overflow-scroll justify-center"> 

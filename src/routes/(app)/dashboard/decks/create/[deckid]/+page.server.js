@@ -8,7 +8,7 @@ export async function load({ locals, params }) {
     try {
         const record = await pb.collection('decks').getOne(params['deckid']);
         cardRecords = await pb.collection('cards').getFullList({
-            sort: '-created',
+            sort: 'created',
             filter: `deck.id="${params['deckid']}"`,
         });
         return {
@@ -55,6 +55,38 @@ export const actions = {
 
         console.log(record);
 
-    }
+    },
+    
+    card: async ({cookies, request, url, params}) => {
+
+        const data = await request.formData();
+        const cards = JSON.parse(data.get('cards'));
+        const cardData = {
+            deck: params['deckid'],
+            owner: pb.authStore.model.id,
+        }
+        for (let index = 0; index < cards.length; index++) {
+            const card = cards[index];
+            if (card.modified) {
+
+                cardData.front = card.front;
+                cardData.back = card.back;
+                let record;
+                if (card.id) {
+                    record = await pb.collection('cards').update(card.id, cardData);
+                } else {
+                    record = await pb.collection('cards').create(cardData);
+                }
+            } else if (card.deleted) {
+                if (card.id) {
+                    await pb.collection('cards').delete(card.id);
+                }
+                
+            }
+        }
+        
+
+        return {ok: true}
+    },
 
   };
