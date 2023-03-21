@@ -62,7 +62,7 @@
             Why doesn't Langa do X?
         </div>
         <div class="collapse-content"> 
-            <p>That's a great question and I might not programmed it in yet!<br><br> If you have a neat suggestion for a feature or something you want to see, put a feature request here: <span class="link">https://github.com/imlasky/langa/issues</span></p>
+            <p>That's a great question and I might have just not programmed it in yet!<br><br> If you have a neat suggestion for a feature or something you want to see, put a feature request here: <span class="link">https://github.com/imlasky/langa/issues</span></p>
             
         </div>
     </div>
