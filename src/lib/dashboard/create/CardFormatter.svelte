@@ -41,7 +41,7 @@
             types: ['heading', 'paragraph'],
           }),
         ],
-        content: deck.frontTemplate,
+        content: deck.frontTemplate === "" ? '<p style="text-align: center">{frontContent}<p>' : deck.frontTemplate,
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
           frontEditor = frontEditor;
@@ -61,7 +61,7 @@
             types: ['heading', 'paragraph'],
           }),
         ],
-        content: deck.backTemplate,
+        content: deck.backTemplate === "" ? '<p style="text-align: center">{backContent}<p>' : deck.backTemplate,
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
           backEditor = backEditor;

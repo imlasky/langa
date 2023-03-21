@@ -15,6 +15,7 @@ export async function POST({ request }) {
     }
   
     const record = pb.collection('reviews').create(reviewData)
+    pb.collection('cards').update(data["id"], {lastReviewed: new Date().toISOString()})
     return json({
       status: 200,
       body: {

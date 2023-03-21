@@ -12,6 +12,8 @@ export const actions = {
             name: name,
             private: privateDeck === 'on',
             user: pb.authStore.model.id,
+            frontTemplate: '<p style="text-align: center">{frontContent}<p>',
+            backTemplate: '<p style="text-align: center">{backContent}<p>',
         }
 
         const record = await pb.collection('decks').create(deckData);
