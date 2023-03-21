@@ -23,23 +23,6 @@ export async function load({ locals, params }) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    // default: async ({cookies, request, url, params}) => {
-    //     const data = await request.formData()
-    //     const front = data.get('front');
-    //     const back = data.get('back')
-        
-    //     const cardData = {
-    //         "front": front,
-    //         "back": back,
-    //         "deck": params['deckid'],
-    //         "owner": pb.authStore.model.id,
-    //     };
-
-    //     const record = await pb.collection('cards').create(cardData);
-
-    //     throw redirect (307, `/dashboard/decks/create/${params['deckid']}`)
-
-    // },
     updateFormat: async ({cookies, request, url, params}) => {
 
         const data = await request.formData();
@@ -63,7 +46,7 @@ export const actions = {
         const cards = JSON.parse(data.get('cards'));
         const cardData = {
             deck: params['deckid'],
-            owner: pb.authStore.model.id,
+            user: pb.authStore.model.id,
         }
         for (let index = 0; index < cards.length; index++) {
             const card = cards[index];
@@ -71,6 +54,7 @@ export const actions = {
 
                 cardData.front = card.front;
                 cardData.back = card.back;
+                console.log(cardData)
                 let record;
                 if (card.id) {
                     record = await pb.collection('cards').update(card.id, cardData);

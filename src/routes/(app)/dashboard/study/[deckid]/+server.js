@@ -11,7 +11,7 @@ export async function POST({ request }) {
         reviewTime: data["reviewTime"],
         card: data["id"],
         survey: data["survey"],
-        owner: pb.authStore.model.id,
+        user: pb.authStore.model.id,
     }
   
     const record = pb.collection('reviews').create(reviewData)

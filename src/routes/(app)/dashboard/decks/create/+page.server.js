@@ -9,9 +9,9 @@ export const actions = {
         const privateDeck = data.get('privateDeck');
 
         const deckData = {
-            "name": name,
-            "private": privateDeck === 'on',
-            "owner": pb.authStore.model.id,
+            name: name,
+            private: privateDeck === 'on',
+            user: pb.authStore.model.id,
         }
 
         const record = await pb.collection('decks').create(deckData);
