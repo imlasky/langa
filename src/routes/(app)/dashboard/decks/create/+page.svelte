@@ -9,14 +9,14 @@
 
 <div class="flex w-full h-full justify-center">
 
-    <form method="POST" use:enhance class="flex flex-col w-4/5 md:w-1/2 gap-y-2">
-        <div class="flex flex-col items-start w-full">
+    <form method="POST" use:enhance class="flex flex-col w-full items-center gap-y-2">
+        <div class="flex flex-col items-start w-4/5 md:w-1/2">
 
-            <div class="form-control w-full max-w-sm">
+            <div class="flex form-control w-full justify-center">
                 <label class="label">
                   <span class="label-text">Deck name</span>
                 </label>
-                <input name="name" type="text" maxlength="100" placeholder="Wow such deck" class="input input-bordered w-full max-w-sm" bind:value={deckName}/>
+                <input name="name" type="text" maxlength="100" placeholder="Wow such deck" class="input input-bordered w-full " bind:value={deckName}/>
                 
             </div>
             <div class="form-control">

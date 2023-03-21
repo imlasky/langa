@@ -63,15 +63,16 @@
 
     <section class="flex flex-col w-full items-center bg-info py-24">
         <div class="flex md:flex-row w-4/5 md:w-3/4 items-center align-middle justify-center gap-x-8">
-            <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0 w-1/2">Minimize repetitions by keeping track of how you learn</h2>
-            <div class="flex w-1/2 justify-center">
-                <ul class="list-disc">
+            <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0 w-1/2">Personalized to you</h2>
+            <div class="flex flex-col w-1/2 justify-center">
+                <h3 class="text-2xl">Using a variety of inputs, Langa uses machine learning to determine which card you should see next</h3>
+                <!-- <ul class="list-disc">
                     <li class="text-2xl">Lifestyle inputs</li>
                     <li class="text-2xl">Card content</li>
                     <li class="text-2xl">Time studying each card</li>
                     <li class="text-2xl">Time answering each card</li>
                     <li class="text-2xl">Card difficulty rating</li>
-                </ul>
+                </ul> -->
             </div>
         </div>
 

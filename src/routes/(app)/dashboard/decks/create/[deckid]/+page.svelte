@@ -1,50 +1,42 @@
 <script>
-    import CardEditor from "$lib/dashboard/create/CardEditor.svelte";
+    import CardFormatter from "$lib/dashboard/create/CardFormatter.svelte";
+    import CardAdder from "$lib/dashboard/create/CardAdder.svelte";
 
 
     export let data;
 
     let deck = data.deck;
     let cards = data.cards;
+    let side = 0;
     let frontEditor;
     let backEditor;
 
-    function handleClick(card) {
-        frontEditor.commands.setContent(card.front)
-        backEditor.commands.setContent(card.back)
 
-    }
-
+  
 </script>
 
 <h1 class="text-2xl font-bold">{deck.name}</h1>
 
-<div class="flex flex-col-reverse md:flex-row w-full px-4 md:space-x-4">
+<div class="flex flex-col w-full px-4 md:space-x-4">
 
-    <div class="flex flex-col w-full md:w-1/3 h-full overflow-scroll"> 
-        <div class="overflow-x-auto">
-            <table class="table table-compact w-full">
-              <!-- head -->
-              <thead>
-                <tr>
-                  <th>Front</th>
-                  <th>Back</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- row 1 -->
-                {#each cards as card}
+  <div>
+    <button class="btn btn-ghost" on:click={() => {side=0}}>Add cards</button>
+    <button class="btn btn-ghost" on:click={() => {side=1}}>Adjust card format</button>
 
-                    <tr class="hover hover:cursor-pointer" on:click={() => {handleClick(card)}}>
-                        <td>{@html card.front}</td>
-                        <td>{@html card.back}</td>
-                    </tr>                
-                {/each}
-              </tbody>
-            </table>
-          </div>
+  </div>
+    <div class="flex flex-row w-full h-full overflow-scroll justify-center"> 
+      {#if side === 0}
+
+        <CardAdder bind:cards/>
+
+        
+      {:else}
+      <div class="flex w-full justify-center">
+        <CardFormatter bind:frontEditor bind:backEditor bind:deck/>
+      </div>
+        
+      {/if}
     </div>
     
-    <CardEditor bind:frontEditor bind:backEditor/>
 
 </div>

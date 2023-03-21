@@ -8,6 +8,7 @@
     import { fade } from 'svelte/transition';
 
     export let form;
+    export let deck;
     export let frontEditor;
     export let backEditor;
     
@@ -40,7 +41,7 @@
             types: ['heading', 'paragraph'],
           }),
         ],
-        content: '<p style="text-align:center">Hello World! 🌍️ </p>',
+        content: deck.frontTemplate,
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
           frontEditor = frontEditor;
@@ -60,7 +61,7 @@
             types: ['heading', 'paragraph'],
           }),
         ],
-        content: '<p style="text-align:center">Hello World! 🌍️ </p>',
+        content: deck.backTemplate,
         onTransaction: () => {
           // force re-render so `editor.isActive` works as expected
           backEditor = backEditor;
@@ -89,10 +90,10 @@
 </script>
   
 
-  <div class="flex flex-col w-full md:w-2/3 space-y-4">
+  <div class="flex flex-col w-full md:w-2/3 space-y-4 ">
     
       <div class="flex md:ml-8">
-        <h2 class="text-xl font-bold">Front content</h2>
+        <h2 class="text-xl font-bold">Front format</h2>
       </div>
       
       <div class="flex flex-col w-full md:w-full items-start border-4 border-neutral-800">
@@ -136,7 +137,7 @@
       </div>
   
       <div class="flex md:ml-8">
-        <h2 class="text-xl font-bold">Back content</h2>
+        <h2 class="text-xl font-bold">Back format</h2>
       </div>
       <div class="flex flex-col w-full md:w-full items-start border-4 border-neutral-800">
       
@@ -177,19 +178,19 @@
         <div bind:this={backElement} class="w-full min-h-16"/>
             
       </div>
-      <form method="post" use:enhance>
+      <form method="post" use:enhance action="?/updateFormat">
 
-        <input bind:value={frontContent} name="front" hidden/>
-        <input bind:value={backContent} name="back" hidden/>
+        <input bind:value={frontContent} name="frontTemplate" hidden/>
+        <input bind:value={backContent} name="backTemplate" hidden/>
 
         <div class="flex flex-col justify-center">
 
           <div class="flex justify-center">
-            <Button buttonSize='md' on:click={handleClick}>Create card</Button>
+            <Button buttonSize='md' on:click={handleClick}>Update format</Button>
           </div>
           <div class="flex justify-center" >
             {#if created}
-              <p transition:fade="{{duration:200}}" class="text-md italic">Card created</p>
+              <p transition:fade="{{duration:200}}" class="text-md italic">Format updated</p>
             {/if}
           </div>
           
