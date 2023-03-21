@@ -2,10 +2,12 @@
     import FlashCard from "$lib/components/cards/FlashCard.svelte";
     import Button from "$lib/components/interface/Button.svelte";
     import PreSurvey from "$lib/study/PreSurvey.svelte";
+    import { destroy_block } from "svelte/internal";
 
     export let data;
     export let form;
 
+    let deck = data.deck;
     let cards = data.cards;
     let currentCard = cards[0];
 
@@ -42,6 +44,8 @@
                 bind:gaveDifficulty
                 front={currentCard.front}
                 back={currentCard.back}
+                frontTemplate={deck.frontTemplate}
+                backTemplate={deck.backTemplate}
                 
             />
         </div>

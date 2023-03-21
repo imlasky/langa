@@ -10,8 +10,11 @@
     let reviewTime = 0;
     let answerTime = 0;
     let cardData = {}
-    export let front = "<p>This is the <strong>front</strong> of the card</p>"
-    export let back = "<p>This is the <strong>back</strong> of the card</p>"
+    export let front = "This is the front"
+    export let back = "This is the back"
+    export let frontTemplate;
+    export let backTemplate;
+
 
 
     function calculateNextReview() {
@@ -66,14 +69,14 @@
 <div class="flex flex-col w-5/6 md:w-1/2 h-72 bg-white place-content-around shadow-lg rounded-xl p-2">
     {#if !showAnswer}
         <div class="flex justify-center">
-            {@html front}
+            {@html frontTemplate.replace("{frontContent}",front)}
         </div>
         <button on:click={() => {showAnswer = true}}>Show answer</button>
     {:else}
-        <div class="flex justify-center">
-            {@html back}
+        <div class="flex justify-center prose max-w-none">
+            {@html backTemplate.replace("{backContent}",back)}
         </div>
-        <div class="flex justify-center">
+        <div class="flex justify-center prose max-w-none">
             <DifficultyRating bind:gaveDifficulty bind:cardDifficultyRating/> 
         </div>
 

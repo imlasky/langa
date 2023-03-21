@@ -70,9 +70,9 @@ export const actions = {
         return {ok:true}
 
     },
-    answer: async ({request}) => {
-        const data = await request.formData();
-        console.log(data);
-    }
+    // answer: async ({request}) => {
+    //     const data = await request.formData();
+    //     console.log(data);
+    // }
 
   };
