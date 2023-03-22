@@ -54,7 +54,6 @@ export const actions = {
 
                 cardData.front = card.front;
                 cardData.back = card.back;
-                console.log(cardData)
                 let record;
                 if (card.id) {
                     record = await pb.collection('cards').update(card.id, cardData);
@@ -72,5 +71,29 @@ export const actions = {
 
         return {ok: true}
     },
+
+    upload: async ({cookies, request, url, params}) => {
+        const data = await request.formData();
+
+        const cards = JSON.parse(data.get('cards'));
+        const cardData = {
+            deck: params['deckid'],
+            user: pb.authStore.model.id,
+            
+        }
+        for (let index = 0; index < cards.length; index++) {
+            const card = cards[index];
+            if (card.front && card.back) {
+    
+                if (card.front !== "" && card.back !== "") {
+    
+                    cardData.front = card.front;
+                    cardData.back = card.back;
+                    const record = await pb.collection('cards').create(cardData);
+                }
+            }
+            
+        }
+    }
 
   };

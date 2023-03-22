@@ -4,7 +4,6 @@
     let tabs = [
       'manage',
       'create',
-      'upload',
     ];
     let selectedTab = 0;
     $: currentPage = $page.url.pathname.split('/')[3]

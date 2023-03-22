@@ -30,7 +30,7 @@
 
     <section class="flex flex-col w-full items-center bg-primary py-24">
         <div class="flex md:flex-row w-4/5 md:w-3/4 items-center align-middle justify-center gap-x-2">
-            <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0">A quick questionnaire about your day is all you need to personalize your lesson</h2>
+            <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0">A quick questionnaire about your day helps tailor the lesson to how <span class="text-accent">you</span> are doing</h2>
             <div class="mockup-window border bg-base-300 shadow-xl">
                 <img src="image/survey.png" width=800>
               </div>

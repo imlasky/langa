@@ -29,6 +29,7 @@
 		"@tiptap/pm": "^2.0.0-beta.220",
 		"@tiptap/starter-kit": "^2.0.0-beta.220",
 		"daisyui": "^2.51.4",
+		"papaparse": "^5.4.0",
 		"pocketbase": "^0.12.1"
 	}
 }
