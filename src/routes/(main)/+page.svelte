@@ -39,7 +39,7 @@
     </section>
 
     <section class="flex flex-col w-full items-center align-middle justify-center bg-secondary py-24">
-        <h2 class="text-3xl md:text-5xl font-bold pb-12">Customize your cards for what you need</h2>
+        <h2 class="text-center text-3xl md:text-5xl font-bold pb-12">Customize your cards for what you need</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 w-4/5 md:w-3/4 gap-x-4">
             <div class="mockup-code shadow-xl">
                 <div class="flex flex-col justify-center px-4 py-16 gap-y-2">
@@ -62,10 +62,10 @@
     </section>
 
     <section class="flex flex-col w-full items-center bg-info py-24">
-        <div class="flex md:flex-row w-4/5 md:w-3/4 items-center align-middle justify-center gap-x-8">
-            <h2 class="text-xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0 w-1/2">Personalized to you</h2>
-            <div class="flex flex-col w-1/2 justify-center">
-                <h3 class="text-2xl">Using a variety of inputs, Langa uses machine learning to determine which card you should see next</h3>
+        <div class="flex flex-col md:flex-row w-4/5 md:w-3/4 items-center align-middle justify-center gap-x-8">
+            <h2 class="text-3xl text-center md:text-start md:text-5xl font-bold pb-2 md:pb-0 w-1/2">Personalized to you</h2>
+            <div class="flex flex-col md:w-1/2 justify-center">
+                <h3 class="text-center md:text-left text-2xl">Using a variety of inputs, Langa uses machine learning to determine which card you should see next</h3>
                 <!-- <ul class="list-disc">
                     <li class="text-2xl">Lifestyle inputs</li>
                     <li class="text-2xl">Card content</li>
