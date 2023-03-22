@@ -4,9 +4,12 @@
     import Button from "$lib/components/interface/Button.svelte";
     import { json } from "@sveltejs/kit";
     import { onMount } from "svelte";
-
+    import { pb } from "$lib/pocketbase";
+    import { page } from "$app/stores";
 
     export let cards = [];
+    export let totalPages;
+    let numPag
     let cardsOld = cards.map((card) => {return {...card}});
     let cardLengthCheck = 0;
     export let form;
@@ -15,6 +18,8 @@
     let numTimesUpdate = 0;
     let showSaving = false;
     let numModified = 0;
+    let pageNum = 1;
+    let searchTerm;
 
     /**
      * @type {HTMLFormElement}
@@ -23,7 +28,6 @@
 
 
     function getNumModified(cards) {
-
 
         return cards.filter(card => card.modified || card.deleted).length
     }
@@ -85,6 +89,33 @@
 
     $: modifiedCards = cards.filter(card => card.modified || card.deleted);
 
+    async function handlePrevPage() {
+        pageNum = pageNum === 1? 1: pageNum-1;
+        let records =  await pb.collection('cards').getList(pageNum, 50, {
+            sort: 'created',
+            filter: `deck.id="${$page.params.deckid}"`,
+        });
+        cards = records.items.map((card) => {return card.export()})
+    }
+
+    async function handleNextPage() {
+        pageNum = pageNum === totalPages? totalPages: pageNum+1;
+        let records =  await pb.collection('cards').getList(pageNum, 50, {
+            sort: 'created',
+            filter: `deck.id="${$page.params.deckid}"`,
+        });
+        cards = records.items.map((card) => {return card.export()})
+    }
+
+    async function handleSearchPress() {
+        let records =  await pb.collection('cards').getList(pageNum, 50, {
+            sort: 'created',
+            filter: `deck.id="${$page.params.deckid}" && (front?~"${searchTerm}" || back?~"${searchTerm}")`,
+        });
+        totalPages = records.totalPages;
+        cards = records.items.map((card) => {return card.export()});
+    }
+
 </script>
 
 <svelte:window on:keydown={() => {timeSinceUpdate=0}} />
@@ -95,7 +126,21 @@
             <p>Saving...</p>
         {/if}
     </div>
+    <div class="flex h-8 pl-2">
+       
+        <input class="input input-bordered" bind:value={searchTerm} on:keyup={handleSearchPress} placeholder="Search cards"/>
+    </div>
     
+    <div class="flex flex-col">
+
+        <div class="flex w-full justify-center pt-4 space-x-2">
+            <Button buttonSize="sm" on:click={handlePrevPage}>Prev page</Button>
+            <Button buttonSize="sm" on:click={handleNextPage}>Next page</Button>
+        </div>
+        <div class="flex justify-around">
+            <p>Page {pageNum}/{totalPages}</p>
+        </div>
+    </div>
     <table class="table w-full border-4 border-neutral-800">
         <thead>
         <tr>

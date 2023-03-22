@@ -11,6 +11,7 @@
 
     let deck = data.deck;
     let cards = data.cards;
+    let totalPages = data.totalPages;
     let side = 0;
     let frontEditor;
     let backEditor;
@@ -34,7 +35,7 @@
     <div class="flex flex-row w-full h-full overflow-scroll justify-center"> 
       {#if side === 0}
 
-        <CardCreator bind:cards/>
+        <CardCreator bind:cards bind:totalPages/>
 
       {:else if side === 1}
 

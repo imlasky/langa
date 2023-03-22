@@ -7,13 +7,14 @@ export async function load({ locals, params }) {
     let cardRecords;
     try {
         const record = await pb.collection('decks').getOne(params['deckid']);
-        cardRecords = await pb.collection('cards').getFullList({
+        cardRecords = await pb.collection('cards').getList(1, 50, {
             sort: 'created',
             filter: `deck.id="${params['deckid']}"`,
         });
         return {
             deck: record.export(),
-            cards: cardRecords.map((card) => {return card.export()})
+            cards: cardRecords.items.map((card) => {return card.export()}),
+            totalPages: cardRecords.totalPages,
         }
     } catch (error) {
         throw redirect (307, '/dashboard/decks/manage')
