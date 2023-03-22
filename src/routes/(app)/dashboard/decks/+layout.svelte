@@ -10,7 +10,7 @@
     
 </script>
 
-<div class="flex flex-col w-full mt-12 space-y-12 px-4">
+<div class="flex flex-col w-full mt-12 space-y-12">
     
     <div class="tabs">
         {#each tabs as tab, i }

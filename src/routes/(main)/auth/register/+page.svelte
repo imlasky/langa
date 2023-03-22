@@ -19,7 +19,7 @@
 
         <h1 class="text-2xl font-bold">Sign up for Langa</h1>
         <ListErrors errors={form?.errors} />
-        <form method="POST" use:enhance class="flex flex-col items-center w-1/2 gap-y-2">
+        <form method="POST" use:enhance class="flex flex-col items-center w-3/4 md:w-1/2 gap-y-2">
             <div class="form-control w-full max-w-sm">
                 <label class="label">
                   <span class="label-text">Email</span>

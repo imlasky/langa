@@ -13,7 +13,7 @@
 
 
    
-<div class="flex overflow-x-scroll w-full max-h-screen justify-center">
+<div class="flex flex-col w-full mt-12 space-y-12 items-center">
   <table class="table w-3/4 mb-20">
     <!-- head -->
     <thead>
