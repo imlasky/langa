@@ -37,7 +37,7 @@
           <td>{new Date(deck.updated).toLocaleDateString()}</td>
           <th>
             <div class="dropdown">
-              <label tabindex="0"  class="btn btn-ghost btn-xs">manage</label>
+              <label tabindex="0"  class="btn btn-ghost btn-sm">manage</label>
               <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box">
                 <li><a href="/dashboard/decks/create/{deck.id}">Edit cards</a></li>
                 <li><label for="deleteModal" on:click={() => {deletedDeck=deck}}>Delete</label></li>

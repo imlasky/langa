@@ -37,7 +37,6 @@ export const actions = {
 
         const record = await pb.collection('decks').update(params['deckid'], updateData);
 
-        console.log(record);
 
     },
     

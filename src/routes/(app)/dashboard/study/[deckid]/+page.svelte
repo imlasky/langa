@@ -17,6 +17,7 @@
     let cardDifficultyRating = 0;
     let gaveDifficulty = false;
     let submitted = false;
+    let blurred = false;
 
     $: takeSurvey = data.takeSurvey ? !submitted : data.takeSurvey;
 
@@ -29,10 +30,11 @@
             gaveDifficulty = true;
         }
     }
+
    
 </script>
 
-<svelte:window on:keyup={handleKeyUp}/>
+<svelte:window on:keyup={handleKeyUp} on:blur={() => {blurred=true}} on:focus={() => {blurred=false}}/>
 
 {#if takeSurvey}
     <PreSurvey bind:submitted {form}/>
@@ -48,8 +50,8 @@
                 {survey}
                 frontTemplate={deck.frontTemplate}
                 backTemplate={deck.backTemplate}
-                
-                
+                {form}
+                {blurred}
             />
         </div>
     {:else}

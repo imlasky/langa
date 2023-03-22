@@ -19,7 +19,6 @@ export const actions = {
         const data = await request.formData()
         const deckId = data.get('deckId')
 
-        console.log(deckId)
         const record = await pb.collection('decks').delete(deckId);
         
         return {

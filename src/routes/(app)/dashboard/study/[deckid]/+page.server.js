@@ -1,5 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { pb } from '$lib/pocketbase';
+import { calculateNext } from '$lib/model';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
@@ -27,7 +28,6 @@ export async function load({ locals, params }) {
     // Check the latest survey and see if null 
     const latestSurvey = resultList.totalItems > 0 ? resultList.items[0].export() : null;
     let combinedCards = [...cardRecords.map((card) => {return card.export()}), ...newCardRecords.items.map((card) => {return card.export()})];
-    console.log(combinedCards);
     if (!latestSurvey) {
         return {
             takeSurvey: true, 
@@ -84,5 +84,27 @@ export const actions = {
             survey:record.export(),
         }
 
+    },
+    answer: async ({cookies, request, url}) => {
+
+        const data = await request.formData()
+        const card = JSON.parse(data.get('card'));
+        const review = {
+            card: card.id,
+            answerTime: card.answerTime,
+            reviewTime: card.reviewTime,
+            difficultyRating: parseInt(data.get('difficulty')),
+            survey: card.survey,
+            user: card.user,
+        }
+        card['lastReviewed'] = new Date().toISOString()
+
+        const nextReview = await calculateNext(card)
+
+        card.nextReview = nextReview;
+        const updatedCard = await pb.collection('cards').update(card.id, card)
+        const newReview = await pb.collection('reviews').create(review)
+
+        return {ok: true}
     },
 };
