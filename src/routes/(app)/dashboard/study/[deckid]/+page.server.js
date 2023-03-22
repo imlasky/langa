@@ -6,9 +6,15 @@ export async function load({ locals, params }) {
 
     let deckRecord;
     let cardRecords;
+    let newCardRecords;
+    let numNewCards = 20;
     try {
         deckRecord = await pb.collection('decks').getOne(params['deckid']);
         cardRecords = await pb.collection('cards').getFullList({
+            filter: `deck.id="${params['deckid']}"&&nextReview<="${new Date().toISOString()}"&&nextReview!=null`,
+        });
+        newCardRecords = await pb.collection('cards').getList(1, numNewCards,{
+            sort: '-created',
             filter: `deck.id="${params['deckid']}"`,
         });
     } catch (error) {
@@ -20,11 +26,13 @@ export async function load({ locals, params }) {
     
     // Check the latest survey and see if null 
     const latestSurvey = resultList.totalItems > 0 ? resultList.items[0].export() : null;
+    let combinedCards = [...cardRecords.map((card) => {return card.export()}), ...newCardRecords.items.map((card) => {return card.export()})];
+    console.log(combinedCards);
     if (!latestSurvey) {
         return {
             takeSurvey: true, 
             deck: deckRecord.export(),
-            cards: cardRecords.map((card) => {return card.export()})
+            cards: combinedCards,
         }
     }
 
@@ -36,14 +44,14 @@ export async function load({ locals, params }) {
         return {
             takeSurvey: true, 
             deck: deckRecord.export(),
-            cards: cardRecords.map((card) => {return card.export()})
+            cards: combinedCards,
         }
     } else {
         return {
             takeSurvey: false, 
             survey: latestSurvey,
             deck: deckRecord.export(),
-            cards: cardRecords.map((card) => {return card.export()})
+            cards: combinedCards,
         }
     }
 
