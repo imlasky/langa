@@ -3,6 +3,7 @@
     import DifficultyRating from "./DifficultyRating.svelte";
     import {page} from "$app/stores";
     import { enhance } from "$app/forms";
+    import { onMount } from "svelte";
 
 
     export let showAnswer = false;
@@ -19,22 +20,12 @@
     let answerTime = 0;
     let cardData = {}
 
-    currentCard['survey'] = survey.id;
+    $: currentCard['survey'] = survey.id;
 
-    function calculateNextReview() {
 
-        // TODO: Add calculation logic / model here?
-
-        return new Date(currentCard['lastReviewed']).toISOString()
-    }
 
     function updateCardData() {
         if (gaveDifficulty && form?.ok) {
-
-            // currentCard['lastReviewed'] = new Date().toISOString()
-            // // currentCard['nextReview'] = calculateNextReview();
-            // currentCard['survey'] = survey.id;
-
             gaveDifficulty = false;
             showAnswer = false;
             answerTime = 0;
@@ -62,11 +53,6 @@
     beforeNavigate(() => {
         clearInterval(timerID);
     })
-
-    
-
-
-
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->

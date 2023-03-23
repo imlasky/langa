@@ -2,16 +2,16 @@
     import FlashCard from "$lib/components/cards/FlashCard.svelte";
     import Button from "$lib/components/interface/Button.svelte";
     import PreSurvey from "$lib/study/PreSurvey.svelte";
-    import { destroy_block } from "svelte/internal";
+    import { destroy_block, onMount } from "svelte/internal";
 
     export let data;
     export let form;
 
     let deck = data.deck;
-    let cards = data.cards;
+    $: cards = data.cards ? data.cards: [];
     $: survey = data.survey ? data.survey : form?.survey;
 
-    let currentCard = cards[0];
+    $: currentCard = cards ? cards[0] : null;
 
     let showAnswer = false;
     let cardDifficultyRating = 0;
@@ -30,6 +30,7 @@
             gaveDifficulty = true;
         }
     }
+
 
    
 </script>

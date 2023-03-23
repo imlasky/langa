@@ -4,10 +4,10 @@
     export let gaveDifficulty = false;  
 
     let difficultyLevels = [
-        {difficultyString: 'Easy', difficultyRating: 0},
-        {difficultyString: 'Okay', difficultyRating: 1},
-        {difficultyString: 'Hard', difficultyRating: 2},
-        {difficultyString: 'Again', difficultyRating: 3},
+        {difficultyString: 'Again', difficultyRating: 0},
+        {difficultyString: 'Hard', difficultyRating: 1},
+        {difficultyString: 'Okay', difficultyRating: 2},
+        {difficultyString: 'Easy', difficultyRating: 3},
 
     ]
 

@@ -1,6 +1,6 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { pb } from '$lib/pocketbase';
-import { calculateNext } from '$lib/model';
+import { calculateNextReview } from '$lib/model';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({ locals, params }) {
@@ -8,17 +8,27 @@ export async function load({ locals, params }) {
     let deckRecord;
     let cardRecords;
     let newCardRecords;
-    let numNewCards = 20;
+    let numNewCards = 1;
+    let midnight = new Date((new Date()).setHours(24,0,0,0)).toISOString()
+    let numNewCardsSeen = 0;
+    let today = new Date().toISOString().slice(0,10);
     try {
         deckRecord = await pb.collection('decks').getOne(params['deckid']);
         cardRecords = await pb.collection('cards').getFullList({
-            filter: `deck.id="${params['deckid']}"&&nextReview<="${new Date().toISOString()}"&&nextReview!=null`,
+            filter: `deck.id="${params['deckid']}"&&nextReview<="${midnight}"&&nextReview!=null`,
+            sort: "nextReview",
         });
-        newCardRecords = await pb.collection('cards').getList(1, numNewCards,{
-            sort: 'created',
-            filter: `deck.id="${params['deckid']}"`,
-        });
+
+
+        numNewCardsSeen = cardRecords.filter(card => new Date(card.firstSeen).toISOString().slice(0, 10)===today)
+        if (numNewCardsSeen < numNewCards) {
+            newCardRecords = await pb.collection('cards').getList(1, numNewCards-numNewCardsSeen,{
+                sort: 'created',
+                filter: `deck.id="${params['deckid']}"&&nextReview=null`,
+            });
+        }
     } catch (error) {
+        console.log(error)
         throw redirect (307, '/dashboard/study')
     }
     const resultList = await pb.collection('surveys').getList(1, 1, {
@@ -27,8 +37,18 @@ export async function load({ locals, params }) {
     
     // Check the latest survey and see if null 
     const latestSurvey = resultList.totalItems > 0 ? resultList.items[0].export() : null;
-    let combinedCards = [...cardRecords.map((card) => {return card.export()}), ...newCardRecords.items.map((card) => {return card.export()})];
-    console.log(combinedCards)
+    let combinedCards;
+    if (newCardRecords) {
+
+        newCardRecords.items.forEach((card) => {
+            card.export()
+            card.nextReview = new Date().toISOString();
+            card.firstSeen = new Date().toISOString();
+        });
+        combinedCards = [...cardRecords.map((card) => {return card.export()}), ...newCardRecords.items.map((card) => {return card.export()})].sort((a, b) => (new Date(a.nextReview) - new Date(b.nextReview)));
+    } else {
+        combinedCards = [...cardRecords.map((card) => {return card.export()})]
+    }
     if (!latestSurvey) {
         return {
             takeSurvey: true, 
@@ -100,9 +120,10 @@ export const actions = {
         }
         card['lastReviewed'] = new Date().toISOString()
 
-        const nextReview = await calculateNext(card)
+        const nextReview = await calculateNextReview(card)
 
-        card.nextReview = nextReview;
+        card.nextReview = nextReview.toISOString();
+        // console.log(card)
         const updatedCard = await pb.collection('cards').update(card.id, card)
         const newReview = await pb.collection('reviews').create(review)
 
