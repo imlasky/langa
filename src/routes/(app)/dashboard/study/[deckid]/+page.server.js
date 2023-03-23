@@ -8,7 +8,7 @@ export async function load({ locals, params }) {
     let deckRecord;
     let cardRecords;
     let newCardRecords;
-    let numNewCards = 1;
+    let numNewCards = 20;
     let midnight = new Date((new Date()).setHours(24,0,0,0)).toISOString()
     let numNewCardsSeen = 0;
     let today = new Date().toISOString().slice(0,10);
@@ -19,8 +19,7 @@ export async function load({ locals, params }) {
             sort: "nextReview",
         });
 
-
-        numNewCardsSeen = cardRecords.filter(card => new Date(card.firstSeen).toISOString().slice(0, 10)===today)
+        numNewCardsSeen = cardRecords.filter(card => new Date(card.firstSeen).toISOString().slice(0, 10)===today).length
         if (numNewCardsSeen < numNewCards) {
             newCardRecords = await pb.collection('cards').getList(1, numNewCards-numNewCardsSeen,{
                 sort: 'created',
@@ -110,6 +109,7 @@ export const actions = {
 
         const data = await request.formData()
         const card = JSON.parse(data.get('card'));
+        const difficulty = data.get('difficulty');
         const review = {
             card: card.id,
             answerTime: card.answerTime,
@@ -117,10 +117,11 @@ export const actions = {
             difficultyRating: parseInt(data.get('difficulty')),
             survey: card.survey,
             user: card.user,
+            lastReview: card.lastReviewed ? new Date(card.lastReviewed).toISOString() : new Date().toISOString()
         }
-        card['lastReviewed'] = new Date().toISOString()
+        card.lastReviewed = new Date().toISOString()
 
-        const nextReview = await calculateNextReview(card)
+        const nextReview = await calculateNextReview(card, difficulty)
 
         card.nextReview = nextReview.toISOString();
         // console.log(card)
