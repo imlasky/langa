@@ -108,10 +108,18 @@
     }
 
     async function handleSearchPress() {
-        let records =  await pb.collection('cards').getList(pageNum, 50, {
-            sort: 'created',
-            filter: `deck.id="${$page.params.deckid}" && (front?~"${searchTerm}" || back?~"${searchTerm}")`,
-        });
+        let records;
+        if (searchTerm != "") {
+            records =  await pb.collection('cards').getList(pageNum, 50, {
+                sort: 'created',
+                filter: `deck.id="${$page.params.deckid}" && (front?~"${searchTerm}" || back?~"${searchTerm}")`,
+            });
+        } else {
+            records =  await pb.collection('cards').getList(pageNum, 50, {
+                sort: 'created',
+                filter: `deck.id="${$page.params.deckid}"`,
+            });
+        }
         totalPages = records.totalPages;
         cards = records.items.map((card) => {return card.export()});
     }
