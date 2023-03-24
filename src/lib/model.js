@@ -87,34 +87,9 @@ async function trainModel(model, inputs, labels) {
     });
   }
 
-  function testModel(model, inputData, normalizationData) {
-    const {inputMax, inputMin, labelMin, labelMax} = normalizationData;
-  
-    // Generate predictions for a uniform range of numbers between 0 and 1;
-    // We un-normalize the data by doing the inverse of the min-max scaling
-    // that we did earlier.
-    const [xs, preds] = tf.tidy(() => {
-  
-      const xsNorm = tf.linspace(0, 1, 100);
-      const predictions = model.predict(xsNorm.reshape([100, 1]));
-  
-      const unNormXs = xsNorm
-        .mul(inputMax.sub(inputMin))
-        .add(inputMin);
-  
-      const unNormPreds = predictions
-        .mul(labelMax.sub(labelMin))
-        .add(labelMin);
-  
-      // Un-normalize the data
-      return [unNormXs.dataSync(), unNormPreds.dataSync()];
-    });
-      
-}
-
 export async function calculateNextReview(card, difficulty) {
 
-    let N = 50; //Number of reviews
+    let N = 200; //Number of reviews
    
     const lastNReviews = await pb.collection('reviews').getList(1, N, {
         sort: "-created",
@@ -167,7 +142,7 @@ export async function calculateNextReview(card, difficulty) {
       .add(labelMin);
 
     const offset = unNormPreds.dataSync()[0]
-    console.log(offset/60000);
+    console.log(`${offset/60000} minutes`);
     const layerWeights = model.layers[0].getWeights()
 
     // # Print the weights of the first layer

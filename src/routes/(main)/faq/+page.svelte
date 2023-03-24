@@ -10,7 +10,7 @@
         </div>
         <div class="collapse-content"> 
             <p>Langa is a spaced repetition app built around the idea that how you feel can affect how you learn. <br><br>
-            When you go to study that day, you fill out a quick survey about your day, like when you last ate and how much water you drank.</p>
+            When you go to study that day, you fill out a quick survey about your day, like when you last ate and how much water you drank. Your answers will help determine what word to show next.</p>
         </div>
     </div>
     <!-- svelte-ignore a11y-no-noninteractive-tabindex -->

@@ -48,6 +48,7 @@ export async function load({ locals, params }) {
     } else {
         combinedCards = [...cardRecords.map((card) => {return card.export()})]
     }
+    console.log('num cards: ',combinedCards.length)
     if (!latestSurvey) {
         return {
             takeSurvey: true, 
